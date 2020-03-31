@@ -83,7 +83,7 @@ public class PublicController extends BaseController
     {
         //用户的注册流程
         String username = userQuery.getUsername();
-        String password = new SimpleHash("md5", userQuery.getPassword(), userQuery.getUsername(), 1024).toBase64();
+        String password = String.valueOf(new SimpleHash("md5", userQuery.getPassword(), userQuery.getUsername(), 1024));
         // password = new Md5Hash(password, username, 1024).toBase64();
 
         userService.insertUser(username, password);

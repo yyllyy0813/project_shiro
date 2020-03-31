@@ -29,9 +29,9 @@ public class ShiroConfig
 
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/need_login");
 
-        shiroFilterFactoryBean.setSuccessUrl("/");
+        //shiroFilterFactoryBean.setSuccessUrl("/");
 
         shiroFilterFactoryBean.setUnauthorizedUrl("/not_permit");
 
@@ -42,7 +42,8 @@ public class ShiroConfig
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
         filterChainDefinitionMap.put("/logout", "logout");
-        //filterChainDefinitionMap.put("/pub/**", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/index/**", "authc");
         filterChainDefinitionMap.put("/admin/**", "roles[root]");
         filterChainDefinitionMap.put("/event/add", "perms[event_add]");
@@ -72,7 +73,7 @@ public class ShiroConfig
     public UserRealm userRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher credentialsMatcher)
     {
         UserRealm userRealm = new UserRealm();
-        //userRealm.setCredentialsMatcher(credentialsMatcher);
+        userRealm.setCredentialsMatcher(credentialsMatcher);
         return userRealm;
     }
 
@@ -81,7 +82,7 @@ public class ShiroConfig
     {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         credentialsMatcher.setHashAlgorithmName("md5");
-        credentialsMatcher.setHashIterations(2);
+        credentialsMatcher.setHashIterations(1024);
 
         return credentialsMatcher;
     }
