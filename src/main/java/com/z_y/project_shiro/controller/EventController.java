@@ -133,7 +133,7 @@ public class EventController
         info.put("filterData", filterData);
         info.put("originalData", originalData);
         info.put("timeData", timeData);
-        return JsonData.buildSuccess(info,"查看事件波形");
+        return JsonData.buildSuccess(info,"查看事件的波形");
     }
 
 }
