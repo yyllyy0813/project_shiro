@@ -1,3 +1,6 @@
+/**
+ * 事件增加、列表、波形
+ */
 package com.z_y.project_shiro.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
