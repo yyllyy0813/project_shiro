@@ -47,11 +47,30 @@
             <version>2.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- shiro+redis缓存插件 -->
         <dependency>
             <groupId>org.crazycake</groupId>
             <artifactId>shiro-redis</artifactId>
             <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
         </dependency>
 
         <dependency>
@@ -65,6 +84,44 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.tallison/jmatio -->
+        <dependency>
+            <groupId>org.tallison</groupId>
+            <artifactId>jmatio</artifactId>
+            <version>1.5</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.ujmp/ujmp-complete -->
+        <dependency>
+            <groupId>org.ujmp</groupId>
+            <artifactId>ujmp-complete</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.ujmp/ujmp-jmatio -->
+        <dependency>
+            <groupId>org.ujmp</groupId>
+            <artifactId>ujmp-jmatio</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>us.hebi.matlab.mat</groupId>
+            <artifactId>mfl-core</artifactId>
+            <version>0.5.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>us.hebi.matlab.mat</groupId>
+            <artifactId>mfl-ejml</artifactId>
+            <version>0.5.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

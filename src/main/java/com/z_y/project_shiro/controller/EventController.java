@@ -1,14 +1,19 @@
 package com.z_y.project_shiro.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jmatio.io.MatFileReader;
+import com.jmatio.types.MLArray;
+import com.jmatio.types.MLDouble;
 import com.sun.xml.fastinfoset.stax.events.EventBase;
 import com.z_y.project_shiro.domain.Event;
 import com.z_y.project_shiro.domain.JsonData;
 import com.z_y.project_shiro.service.EventRepository;
+import com.z_y.project_shiro.utils.MatDataReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -114,7 +119,21 @@ public class EventController
     public JsonData findById(@PathVariable("id") Integer id){
         Event event = eventRepository.findById(id).get();
         return JsonData.buildSuccess(event);
+    }
 
+    @RequestMapping("eventChart")
+    public JsonData eventData() throws IOException
+    {
+        String path = "/Volumes/NO NAME/次声数据/次声数据/次声背景事件/次声信号的事件数据/*20141024020350 sc/_NO1.mat";
+        MatDataReader matDataReader = new MatDataReader(path);
+        double[][] filterData = matDataReader.getFilterData();
+        double[][] originalData = matDataReader.getOriginalData();
+        double[][] timeData = matDataReader.getTimeData();
+        Map<String, Object> info = new HashMap<>();
+        info.put("filterData", filterData);
+        info.put("originalData", originalData);
+        info.put("timeData", timeData);
+        return JsonData.buildSuccess(info,"查看事件波形");
     }
 
 }

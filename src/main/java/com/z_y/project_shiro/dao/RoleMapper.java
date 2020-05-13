@@ -1,6 +1,7 @@
 package com.z_y.project_shiro.dao;
 
 import com.z_y.project_shiro.domain.Role;
+import com.z_y.project_shiro.domain.RoleView;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -23,4 +24,7 @@ public interface RoleMapper
             }
     )
     List<Role> findRoleListByUserId(@Param("userId") int userId);
+
+    @Select("select * from role")
+    List<RoleView> findAllRole();
 }

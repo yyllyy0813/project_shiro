@@ -14,4 +14,7 @@ public interface PermissionMapper
             "left join permission p on p.id=rp.permission_id " +
             "where rp.role_id = #{roleId}")
     List<Permission> findPermissionListByRoleId(@Param("roleId") int roleId);
+
+    @Select("select name from permission")
+    List<String> findAllPermission();
 }

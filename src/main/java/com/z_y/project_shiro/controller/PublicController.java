@@ -1,8 +1,6 @@
 package com.z_y.project_shiro.controller;
 
-import com.z_y.project_shiro.domain.JsonData;
-import com.z_y.project_shiro.domain.User;
-import com.z_y.project_shiro.domain.UserQuery;
+import com.z_y.project_shiro.domain.*;
 import com.z_y.project_shiro.error.BussinessException;
 import com.z_y.project_shiro.service.UserService;
 import com.z_y.project_shiro.serviceImp.UserServiceImp;
@@ -19,8 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class PublicController extends BaseController
@@ -63,10 +60,35 @@ public class PublicController extends BaseController
             UsernamePasswordToken token = new UsernamePasswordToken(userQuery.getUsername(), userQuery.getPassword());
             subject.login(token);
 
+
+
             info.put("msg", "登陆成功");
             info.put("session_id", subject.getSession().getId());
 
-            return JsonData.buildSuccess(info);
+            User user = userService.findAllUserInfoByUsername(userQuery.getUsername());
+
+            List<String> stringRoleList = new ArrayList<>();
+            Set<String > stringPermissionSet = new HashSet<>();
+
+            List<Role> roleList = user.getRoleList();
+
+            for (Role role : roleList)
+            {
+                stringRoleList.add(role.getName());
+
+                List<Permission> permissionList = role.getPermissionList();
+                for (Permission permission : permissionList)
+                {
+                    if(permission != null)
+                    {
+                        stringPermissionSet.add(permission.getName());
+                    }
+                }
+            }
+            info.put("role", stringRoleList);
+            info.put("permission", stringPermissionSet);
+
+            return JsonData.buildSuccess(info,"登陆成功");
         }
         catch (Exception e)
         {

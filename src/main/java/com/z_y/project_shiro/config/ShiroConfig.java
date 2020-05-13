@@ -41,14 +41,36 @@ public class ShiroConfig
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
+
+        // 使用事件列表测试前后端分离
+        filterChainDefinitionMap.put("/event/findAll/**", "anon");
+        filterChainDefinitionMap.put("/event/save", "anon");
+        filterChainDefinitionMap.put("/event/findById/**", "anon");
+        filterChainDefinitionMap.put("/event/update", "anon");
+        filterChainDefinitionMap.put("/event/deleteById/**", "anon");
+
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/swagger-resources", "anon");
+        filterChainDefinitionMap.put("/v2/api-docs", "anon");
+        filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
+        filterChainDefinitionMap.put("/configuration/security", "anon");
+        filterChainDefinitionMap.put("/configuration/ui", "anon");
+
+
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/index/**", "authc");
+//        前端测试
+        filterChainDefinitionMap.put("/admin/userList", "anon");
+        filterChainDefinitionMap.put("/admin/permissionList", "anon");
+        filterChainDefinitionMap.put("/event/eventChart", "anon");
+
         filterChainDefinitionMap.put("/admin/**", "roles[root]");
         filterChainDefinitionMap.put("/event/add", "perms[event_add]");
         //filterChainDefinitionMap.put("/event/eventList", "roles[root, admin]");
         filterChainDefinitionMap.put("/event/eventList", "roleOrFilter[root, admin]");
+        filterChainDefinitionMap.put("/role/roleList", "roleOrFilter[root, admin]");
         filterChainDefinitionMap.put("/event/delete", "perms[event_delete]");
         filterChainDefinitionMap.put("/event/**", "authc");
         filterChainDefinitionMap.put("/**", "authc");
