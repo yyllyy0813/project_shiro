@@ -65,6 +65,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/admin/userList", "anon");
         filterChainDefinitionMap.put("/admin/permissionList", "anon");
         filterChainDefinitionMap.put("/event/eventChart", "anon");
+        filterChainDefinitionMap.put("/profile", "authc");
 
         filterChainDefinitionMap.put("/admin/**", "roles[root]");
         filterChainDefinitionMap.put("/event/add", "perms[event_add]");

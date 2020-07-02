@@ -26,7 +26,7 @@ public class UserRealm extends AuthorizingRealm
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal)
     {
-        System.out.println("认证 doGetAuthorizationInfo");
+        System.out.println("授权 doGetAuthorizationInfo");
 
         User newUser = (User) principal.getPrimaryPrincipal();
         User user = userService.findAllUserInfoByUsername(newUser.getUsername());

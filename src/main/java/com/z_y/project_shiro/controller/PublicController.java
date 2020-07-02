@@ -8,6 +8,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -96,6 +97,19 @@ public class PublicController extends BaseController
             return JsonData.buildError("账号或密码错误");
         }
 
+    }
+
+    @PostMapping(value = "profile")
+    public JsonData profile(HttpServletRequest request)
+    {
+        Subject subject = SecurityUtils.getSubject();
+        PrincipalCollection principals = subject.getPrincipals();
+        Object primaryPrincipal = principals.getPrimaryPrincipal();
+
+        Map<String, Object> info = new HashMap<>();
+        info.put("用户信息", primaryPrincipal);
+
+        return JsonData.buildSuccess(info, "用户信息");
     }
 
     //用户注册接口

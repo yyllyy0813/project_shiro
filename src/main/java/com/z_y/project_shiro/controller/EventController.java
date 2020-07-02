@@ -127,7 +127,8 @@ public class EventController
     @RequestMapping("eventChart")
     public JsonData eventData() throws IOException
     {
-        String path = "/Volumes/NO NAME/次声数据/次声数据/次声背景事件/次声信号的事件数据/*20141024020350 sc/_NO1.mat";
+//        String path = "/Volumes/NO NAME/次声数据/次声数据/次声背景事件/次声信号的事件数据/*20141024020350 sc/_NO1.mat";
+        String path = "/Volumes/NO NAME/次声数据/次声数据/次声背景事件/次声信号的事件数据/20140826113302 GZ/_NO4.mat";
         MatDataReader matDataReader = new MatDataReader(path);
         double[][] filterData = matDataReader.getFilterData();
         double[][] originalData = matDataReader.getOriginalData();

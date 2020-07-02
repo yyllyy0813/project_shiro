@@ -8,7 +8,31 @@ public class Permission implements Serializable
 
     private String name;
 
-    private String url;
+//    private String url;
+
+    /**
+     * 权限类型 1为菜单 2为功能（按钮）3为API
+     */
+    private Integer type;
+
+    /**
+     * 权限编码
+     */
+    private String code;
+
+    private String description;
+
+    private String pid;
+
+    private Integer enVisible;
+
+    public Permission(String name, Integer type, String code, String description)
+    {
+        this.name = name;
+        this.type = type;
+        this.code = code;
+        this.description = description;
+    }
 
     public int getId()
     {
@@ -30,13 +54,53 @@ public class Permission implements Serializable
         this.name = name;
     }
 
-    public String getUrl()
+    public Integer getType()
     {
-        return url;
+        return type;
     }
 
-    public void setUrl(String url)
+    public void setType(Integer type)
     {
-        this.url = url;
+        this.type = type;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code)
+    {
+        this.code = code;
+    }
+
+    public String getPid()
+    {
+        return pid;
+    }
+
+    public void setPid(String pid)
+    {
+        this.pid = pid;
+    }
+
+    public Integer getEnVisible()
+    {
+        return enVisible;
+    }
+
+    public void setEnVisible(Integer enVisible)
+    {
+        this.enVisible = enVisible;
     }
 }
